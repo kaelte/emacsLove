@@ -3,3 +3,11 @@
 
 # Packaging
 .cask
+
+# Old ignoranda
+.idea/
+.idea_modules/
+target/
+project/target/
+.DS_Store
+*~
