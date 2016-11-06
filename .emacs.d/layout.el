@@ -1,7 +1,5 @@
 ;;; Defines the layout
 
-;; (set-keyboard-coding-system (quote utf-8))
-
 ; some colours
 (set-background-color "ivory")
 (set-foreground-color "black")
@@ -36,7 +34,6 @@
 (add-to-list 'default-frame-alist '(left   .  1))
 
 
-
 (set-variable 'indent-tabs-mode 'nil)
 
 
@@ -53,8 +50,39 @@
     (kill-buffer "*Quail Completions*")
   (error nil))
 
+(set-default-font "-*-Courier-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1")
+(set-frame-font   "-*-Courier-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1")
 
-(set-default-font "-outline-Courier New-normal-normal-normal-mono-*-*-*-*-c-*-iso8859-1")
+
+;;; a pretty print
+(cond ((executable-find "gs") (setq ps-lpr-command "gs"))
+      ((or (equal system-type 'ms-dos)
+           (equal system-type 'windows-nt))
+       (setenv "GS_LIB" "c:/App/gs/gs9.16/lib;c:/App/gs/gs9.16/fonts"))
+       (setq ps-lpr-command "c:/App/gs/gs9.16/bin/gswin64c.exe"))
+(concat "-sOutputFile=" (getenv "HOME") "/Desktop/emacs_druck.pdf")
+(setq ps-lpr-switches
+      (list(concat "-sOutputFile=" (getenv "HOME") "/Desktop/emacs_druck.pdf")
+           "-dNOPAUSE" "-dBATCH" "-r288" "-g2380x3368" "-sDEVICE=pdfwrite"
+           "-" ;; stdin needed for Mac OS X. For windows native too ?
+           ))
+
+(setq ps-printer-name t)
+(setq ps-header-title-font-size (quote (10 . 12)))
+(setq ps-font-size (quote (7 . 8)))
+(setq ps-paper-type (quote a4))
+
+
+;;; ENABLE FUNCTIONS
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
+
+
+;;; CUA mode
+(cua-mode t)
+(setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
+(transient-mark-mode 1) ;; No region when it is not highlighted
+(setq cua-keep-region-after-copy nil) ;; Standard Windows behaviour-bash: cua-mode: command not found
 
 ;;; Local Variables: 
 ;;; mode: emacs-lisp

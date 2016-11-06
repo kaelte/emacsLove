@@ -1,6 +1,5 @@
 ;;; We define a few keyboard keys
 
-
 ;; F4
 (global-set-key [f4]    'goto-line)
 

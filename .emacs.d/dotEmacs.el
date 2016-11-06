@@ -1,3 +1,21 @@
+;;(setq debug-on-error t)
+(setenv "PATH"
+        (concat
+         "/opt/local/bin" ":"
+         "/Library/TeX/texbin/" ":"
+         "/usr/local/bin" ":"
+         (getenv "PATH")))
+
+(setq exec-path
+      (quote
+       ("/bin"
+        "/opt/local/bin"
+        "/sbin"
+        "/usr/local/bin"
+        "/usr/sbin"
+        "/usr/bin")))
+
+
 ;;; fuer umlaute et al.
 (load "~/.emacs.d/utf8.el")
 
@@ -11,28 +29,10 @@
 (load "~/.emacs.d/orthography.el")
 
 
-;;; a pretty print
-(setenv "GS_LIB" "c:/App/gs/gs9.16/lib;c:/App/gs/gs9.16/fonts")
-(setq ps-lpr-command "c:/App/gs/gs9.16/bin/gswin64c.exe")
-(setq ps-lpr-switches '("-dNOPAUSE" "-dBATCH" "-r288" "-g2380x3368" "-sDEVICE=pdfwrite" "-sOutputFile=m:/Desktop/emacs_druck.pdf"))
-(setq ps-printer-name t)
-(setq ps-header-title-font-size (quote (10 . 12)))
-(setq ps-font-size (quote (7 . 8)))
-(setq ps-paper-type (quote a4))
+;;; WEITERE IMAEGGSADATEIEN
 
-
-;;; ENABLE FUNCTIONS
-(put 'downcase-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
-
-
-
-;;; CUA mode
-(cua-mode t)
-(setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
-(transient-mark-mode 1) ;; No region when it is not highlighted
-(setq cua-keep-region-after-copy nil) ;; Standard Windows behaviour-bash: cua-mode: command not found
-
+;;; Package Manager
+(load "~/.emacs.d/packages.el")
 
 (setq auto-mode-alist
       (nconc
@@ -43,9 +43,6 @@
        '(("\\.xml$" . html-mode))
        auto-mode-alist))
 
-
-;;; WEITERE IMAEGGSADATEIEN
-
 ;;; Gnuplot
 (add-hook 'gnuplot-mode (function (lambda() (load "~/.emacs.d/gnuplot.el"))))
 
@@ -53,6 +50,7 @@
 ;;; for editing HTML files
 (add-hook 'nxml-mode (function (lambda() (load "~/.emacs.d/htmlMode.el"))))
 (add-hook 'html-mode (function (lambda() (load "~/.emacs.d/htmlMode.el"))))
+(add-hook 'xhtml-mode (function (lambda() (load "~/.emacs.d/htmlMode.el"))))
 
 ;;; for LaTeX mode
 (add-hook 'LaTeX-mode-hook (function (lambda() (load "~/.emacs.d/latexMode.el"))))
@@ -65,12 +63,6 @@
 
 ;;; for Shell Script mode
 (add-hook 'sh-mode-hook (function (lambda() (load "~/.emacs.d/shellScriptMode.el"))))
-
-;;; Package Manager
-(load "~/.emacs.d/packages.el")
-
-;;; No idea if that helps
-(setq ensime-mode-key-prefix [?\C-c ?e])
 
 
 (message "dotEmacs.el loaded :)")
