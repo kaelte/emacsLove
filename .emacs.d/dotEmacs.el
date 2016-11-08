@@ -1,19 +1,7 @@
 ;;(setq debug-on-error t)
-(setenv "PATH"
-        (concat
-         "/opt/local/bin" ":"
-         "/Library/TeX/texbin/" ":"
-         "/usr/local/bin" ":"
-         (getenv "PATH")))
+;;(setenv "PATH" (getenv "PATH"))
 
-(setq exec-path
-      (quote
-       ("/bin"
-        "/opt/local/bin"
-        "/sbin"
-        "/usr/local/bin"
-        "/usr/sbin"
-        "/usr/bin")))
+;;(setq exec-path (getenv "PATH"))
 
 
 ;;; fuer umlaute et al.
