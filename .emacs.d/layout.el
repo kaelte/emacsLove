@@ -64,8 +64,8 @@
 (cond ((executable-find "gs") (setq ps-lpr-command "gs"))
       ((or (equal system-type 'ms-dos)
            (equal system-type 'windows-nt))
-       (setenv "GS_LIB" "c:/App/gs/gs9.16/lib;c:/App/gs/gs9.16/fonts"))
-       (setq ps-lpr-command "c:/App/gs/gs9.16/bin/gswin64c.exe"))
+       (setenv "GS_LIB" "c:/App/gs/gs9.16/lib;c:/App/gs/gs9.16/fonts")
+       (setq ps-lpr-command "c:/App/gs/gs9.16/bin/gswin64c.exe")))
 (concat "-sOutputFile=" (getenv "HOME") "/Desktop/emacs_druck.pdf")
 (setq ps-lpr-switches
       (list(concat "-sOutputFile=" (getenv "HOME") "/Desktop/emacs_druck.pdf")
