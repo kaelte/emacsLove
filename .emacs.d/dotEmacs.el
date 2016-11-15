@@ -1,8 +1,7 @@
-;;(setq debug-on-error t)
-;;(setenv "PATH" (getenv "PATH"))
-
-;;(setq exec-path (getenv "PATH"))
-
+(if (not (getenv "TERM_PROGRAM"))
+    (let ((path (shell-command-to-string "$SHELL -cl \"printf %s \\\"\\\$PATH\\\"\"")))
+      (setenv "PATH" path)))
+(setq exec-path (split-string (getenv "PATH") ":"))
 
 ;;; fuer umlaute et al.
 (load "~/.emacs.d/utf8.el")
@@ -54,6 +53,10 @@
 
 
 (message "dotEmacs.el loaded :)")
+(message "PATH:")
+(message (getenv "PATH"))
+(message "exec-path")
+(prin1 exec-path)
 
 ;;; Local Variables:
 ;;; mode: emacs-lisp

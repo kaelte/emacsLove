@@ -78,10 +78,17 @@
   (interactive "r")
   (rechtschreibpruefung dict_es_CO reg-start reg-end))
 
+;; Does not work on Mac OS X 10.12 with Emacs 25
 (global-set-key [?\C-c ?\C-d] (quote rechtschreibpruefung-deutsch))
 (global-set-key [?\C-c ?\C-e] (quote rechtschreibpruefung-englisch))
 (global-set-key [?\C-c ?\C-f] (quote rechtschreibpruefung-francais))
 (global-set-key [?\C-c ?\C-s] (quote rechtschreibpruefung-espanol))
+
+;; This works
+(global-set-key [f7] (quote rechtschreibpruefung-deutsch))
+(global-set-key [M-f7] (quote rechtschreibpruefung-englisch))
+(global-set-key [C-f7] (quote rechtschreibpruefung-francais))
+(global-set-key [S-f7] (quote rechtschreibpruefung-espanol))
 
 
 ;;; Local Variables:
