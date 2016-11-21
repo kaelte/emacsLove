@@ -29,18 +29,25 @@
   (setq ispell-dictionary-base-alist woerterbuecher)
   (setq ispell-dictionary-alist woerterbuecher)
   (setq ispell-hunspell-dictionary-alist woerterbuecher)
-  (message "hunspell will correct your terrible spelling !"))
+  (message "hunspell will correct your spelling !"))
 
 
 ;; Settings for aspell
 (defun use-aspell()
   "Sets aspell as spell checker."
   (setq-default ispell-program-name "aspell")
-  (defvar dict_de_ch "de_CH")
-  (defvar dict_en_GB "en_GB")
-  (defvar dict_fr_FR "fr_CH")
-  (defvar dict_es_CO "es")
-  (message "aspell will correct your terrible spelling !"))
+  (cond ((or (equal system-type 'ms-dos)
+             (equal system-type 'windows-nt))
+         (setq dict_de_ch "deutsch")
+         (setq dict_en_GB "english")
+         (setq dict_fr_FR "francais")
+         (setq dict_es_CO "castellano"))
+        (t
+         (defvar dict_de_ch "de_CH")
+         (defvar dict_en_GB "en_GB")
+         (defvar dict_fr_FR "fr_CH")
+         (defvar dict_es_CO "es")))
+  (message "aspell will correct your spelling !"))
 
 
 ;; Selecting the spell checker
@@ -78,17 +85,10 @@
   (interactive "r")
   (rechtschreibpruefung dict_es_CO reg-start reg-end))
 
-;; Does not work on Mac OS X 10.12 with Emacs 25
-(global-set-key [?\C-c ?\C-d] (quote rechtschreibpruefung-deutsch))
-(global-set-key [?\C-c ?\C-e] (quote rechtschreibpruefung-englisch))
-(global-set-key [?\C-c ?\C-f] (quote rechtschreibpruefung-francais))
-(global-set-key [?\C-c ?\C-s] (quote rechtschreibpruefung-espanol))
+;; Does not work on Mac OS X 10.12 with Emacs 25 (global-set-key [?\C-c ?\C-d] (quote rechtschreibpruefung-deutsch)) (global-set-key [?\C-c ?\C-e] (quote rechtschreibpruefung-englisch)) (global-set-key [?\C-c ?\C-f] (quote rechtschreibpruefung-francais)) (global-set-key [?\C-c ?\C-s] (quote rechtschreibpruefung-espanol))
 
 ;; This works
-(global-set-key [f7] (quote rechtschreibpruefung-deutsch))
-(global-set-key [M-f7] (quote rechtschreibpruefung-englisch))
-(global-set-key [C-f7] (quote rechtschreibpruefung-francais))
-(global-set-key [S-f7] (quote rechtschreibpruefung-espanol))
+(global-set-key [f7] (quote rechtschreibpruefung-deutsch)) (global-set-key [M-f7] (quote rechtschreibpruefung-englisch)) (global-set-key [C-f7] (quote rechtschreibpruefung-francais)) (global-set-key [S-f7] (quote rechtschreibpruefung-espanol))
 
 
 ;;; Local Variables:
