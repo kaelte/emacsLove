@@ -3,23 +3,27 @@
       (setenv "PATH" path)))
 (setq exec-path (split-string (getenv "PATH") ":"))
 
+(defvar emacsD (file-name-directory load-file-name))
+(defun loadMyFile (fileName) (load (concat emacsD fileName)))
+
+
 ;;; fuer umlaute et al.
-(load "~/.emacs.d/utf8.el")
+(loadMyFile "./utf8.el")
 
 ;;; einige tasturmakri
-(load "~/.emacs.d/keyboard.el")
+(loadMyFile "keyboard.el")
 
 ;;; basic emacs layout
-(load "~/.emacs.d/layout.el")
+(loadMyFile "layout.el")
 
 ;;; fuer die rechtschreibpruefung
-(load "~/.emacs.d/orthography.el")
+(loadMyFile "orthography.el")
 
 
 ;;; WEITERE IMAEGGSADATEIEN
 
 ;;; Package Manager
-(load "~/.emacs.d/packages.el")
+(loadMyFile "packages.el")
 
 (setq auto-mode-alist
       (nconc
@@ -31,25 +35,25 @@
        auto-mode-alist))
 
 ;;; Gnuplot
-(add-hook 'gnuplot-mode (function (lambda() (load "~/.emacs.d/gnuplot.el"))))
+(add-hook 'gnuplot-mode (function (lambda() (loadMyFile "gnuplot.el"))))
 
 
 ;;; for editing HTML files
-(add-hook 'nxml-mode (function (lambda() (load "~/.emacs.d/htmlMode.el"))))
-(add-hook 'html-mode (function (lambda() (load "~/.emacs.d/htmlMode.el"))))
-(add-hook 'xhtml-mode (function (lambda() (load "~/.emacs.d/htmlMode.el"))))
+(add-hook 'nxml-mode (function (lambda() (loadMyFile "htmlMode.el"))))
+(add-hook 'html-mode (function (lambda() (loadMyFile "htmlMode.el"))))
+(add-hook 'xhtml-mode (function (lambda() (loadMyFile "htmlMode.el"))))
 
 ;;; for LaTeX mode
-(add-hook 'LaTeX-mode-hook (function (lambda() (load "~/.emacs.d/latexMode.el"))))
+(add-hook 'LaTeX-mode-hook (function (lambda() (loadMyFile "latexMode.el"))))
 
 ;;; for Scala mode
-(add-hook 'scala-mode-hook (function (lambda() (load "~/.emacs.d/scalaMode.el"))))
+(add-hook 'scala-mode-hook (function (lambda() (loadMyFile "scalaMode.el"))))
 
 ;;; for SQL mode
-(add-hook 'sql-mode-hook (function (lambda() (load "~/.emacs.d/sqlMode.el"))))
+(add-hook 'sql-mode-hook (function (lambda() (loadMyFile "sqlMode.el"))))
 
 ;;; for Shell Script mode
-(add-hook 'sh-mode-hook (function (lambda() (load "~/.emacs.d/shellScriptMode.el"))))
+(add-hook 'sh-mode-hook (function (lambda() (loadMyFile "shellScriptMode.el"))))
 
 
 (message "dotEmacs.el loaded :)")

@@ -50,7 +50,9 @@
     (kill-buffer "*Quail Completions*")
   (error nil))
 
-(cond ((x-list-fonts "-*-Courier-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1")
+(cond ((x-list-fonts "-unknown-DejaVu Sans Mono-normal-normal-normal-*-15-*-*-*-m-0-iso10646-1")
+       (defvar my-font "-unknown-DejaVu Sans Mono-normal-normal-normal-*-15-*-*-*-m-0-iso10646-1"))
+      ((x-list-fonts "-*-Courier-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1")
        (defvar my-font "-*-Courier-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1"))
       ((x-list-fonts "-outline-Consolas-normal-normal-normal-mono-13-*-*-*-c-*-iso10646-1")
        (defvar my-font "-outline-Consolas-normal-normal-normal-mono-13-*-*-*-c-*-iso10646-1")))
